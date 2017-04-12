@@ -17,10 +17,10 @@ def import_beats(beats_file):
 #Initialisation
 pygame.mixer.init(frequency=22050, size=-16, channels=2, buffer=4096)
 #pygame.init()
-son = pygame.mixer.Sound("shadows.wav")
-sonWood = pygame.mixer.Sound("wood.wav")
+son = pygame.mixer.Sound("musique/colouring.wav")
+sonWood = pygame.mixer.Sound("musique/wood.wav")
 
-beats_file = "beat.txt"
+beats_file = "musique/colouringBeats.txt"
 
 tempo = import_beats(beats_file)
 print(tempo)
