@@ -65,7 +65,7 @@ def interpretation_AU(au_file):
     if dic_au["AU06"] == 1 and dic_au["AU12"] == 1:
         return "happy"
 
-    else if dic_au["AU04"] == 1 or (dic_au["AU05"] == 1 and dic_au["AU07"] == 1 and dic_au["AU23"] == 1):
+    elif dic_au["AU04"] == 1 or (dic_au["AU05"] == 1 and dic_au["AU07"] == 1 and dic_au["AU23"] == 1):
         return "angry"
 
     else:
@@ -92,5 +92,7 @@ if __name__ == '__main__':
     call_openface(prog_file, picture_location, output_informations)
 
     # We extract emotions
-    interpretation_AU(
+    emotions = interpretation_AU(
         config["openface"]["output_extract_informations"]["output_file_relative_path"])
+
+    print(emotions)
