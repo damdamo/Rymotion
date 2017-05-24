@@ -16,4 +16,4 @@ openface:
 # Needed because we call the openface application with this argument
   output_extract_informations:
     output_file_full_path: "/home/damien/Workspace/IHM/Rymotion/Blender/openface/informations_extract/informations.txt"
-    output_file_relative_path: "informations_extract/informations.txt"
+    output_file_relative_path: "informations_extract/informations_det_0.txt"
