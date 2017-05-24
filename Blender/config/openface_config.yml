@@ -1,0 +1,19 @@
+# The configuration for utilisation of openface
+# All variable here can be changed.
+# IMPORTANT: FOR A PERSONAL USAGE, THINK TO CHANGE
+# ALL THE FULL PATH
+
+# Information about pictures
+pictures:
+  folder_name: "pictures"
+  file_name: "my_picture.jpg"
+
+# Location of openface application
+# More precisely, FaceLandmarkImg application
+openface:
+  bin_file: "/home/damien/local/OpenFace/build/bin/FaceLandmarkImg"
+# Give the full path for the extract informations
+# Needed because we call the openface application with this argument
+  output_extract_informations:
+    output_file_full_path: "/home/damien/Workspace/IHM/Rymotion/Blender/openface/informations_extract/informations.txt"
+    output_file_relative_path: "informations_extract/informations.txt"
