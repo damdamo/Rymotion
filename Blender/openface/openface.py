@@ -11,6 +11,8 @@ import json
 import pygame
 import pygame.camera
 
+import pandas as pd
+
 
 def take_photos(folder_name, file_name):
     """Juste to take photos with webcam"""
@@ -42,9 +44,16 @@ def call_openface(prog_file, picture_location, output_informations):
 def interpretation_AU(au_file):
     """Extract informations in the return file of
     call_openface and return emotions of the person"""
-    json_data=open(au_file)
-    data = json.load(json_data)
-    #print(data)
+
+    # Dictionnary with actions units
+    dic_au = {}
+    with open(au_file, 'r') as au_file_streaming:
+        for ligne in au_file_streaming:
+            ligne_split = ligne.split()
+            if "AU" in ligne_split[0]:
+                if ligne_split[1] == "0" or ligne_split[1] == "1":
+                    dic_au[ligne_split[0]] = ligne_split[1]
+
 
 if __name__ == '__main__':
 
@@ -59,11 +68,12 @@ if __name__ == '__main__':
     output_informations = config["openface"]["output_extract_informations"]["output_file_full_path"]
 
     # We take a photo
-    take_photos(config["pictures"]["folder_name"],
-                config["pictures"]["file_name"])
+    # take_photos(config["pictures"]["folder_name"],
+    #            config["pictures"]["file_name"])
 
     # We call openface
     # call_openface(prog_file, picture_location, output_informations)
 
     # We extract emotions
-    #interpretation_AU(config["openface"]["output_file_relative_path"])
+    interpretation_AU(
+        config["openface"]["output_extract_informations"]["output_file_relative_path"])
