@@ -43,7 +43,14 @@ def call_openface(prog_file, picture_location, output_informations):
 
 def interpretation_AU(au_file):
     """Extract informations in the return file of
-    call_openface and return emotions of the person"""
+    call_openface and return emotions of the person
+
+    What does AU mean:
+    Happiness: AU06 + AU12
+    Sadness: AUO1 + AU04 + AU15
+    Anger: AU04 + AU05 + AU07 + AU23
+    Surprise: AU01 + AU02 + AU5 + AU26
+    """
 
     # Dictionnary with actions units
     dic_au = {}
@@ -53,6 +60,16 @@ def interpretation_AU(au_file):
             if "AU" in ligne_split[0]:
                 if ligne_split[1] == "0" or ligne_split[1] == "1":
                     dic_au[ligne_split[0]] = ligne_split[1]
+
+    # On regarde dans quel état est la personne
+    if dic_au["AU06"] == 1 and dic_au["AU12"] == 1:
+        return "happy"
+
+    else if dic_au["AU04"] == 1 or (dic_au["AU05"] == 1 and dic_au["AU07"] == 1 and dic_au["AU23"] == 1):
+        return "angry"
+
+    else:
+        return "neutral"
 
 
 if __name__ == '__main__':
@@ -68,11 +85,11 @@ if __name__ == '__main__':
     output_informations = config["openface"]["output_extract_informations"]["output_file_full_path"]
 
     # We take a photo
-    # take_photos(config["pictures"]["folder_name"],
-    #            config["pictures"]["file_name"])
+    take_photos(config["pictures"]["folder_name"],
+                config["pictures"]["file_name"])
 
     # We call openface
-    # call_openface(prog_file, picture_location, output_informations)
+    call_openface(prog_file, picture_location, output_informations)
 
     # We extract emotions
     interpretation_AU(
