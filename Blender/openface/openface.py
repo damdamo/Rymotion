@@ -35,7 +35,7 @@ def take_photos(folder_name, file_name):
 
 def call_openface(prog_file, picture_location, output_informations):
     """Call openface application, take a picture and extract informations
-    about it, we want AU for analysis"""
+    about it, we want AU for analysis."""
     exec_line = "{} -f {} -of {}".format(prog_file,
                                          picture_location, output_informations)
     os.system(exec_line)
@@ -43,9 +43,9 @@ def call_openface(prog_file, picture_location, output_informations):
 
 def interpretation_AU(au_file):
     """Extract informations in the return file of
-    call_openface and return emotions of the person
+    call_openface and return emotions of the person.
 
-    What does AU mean:
+    How can we interpret AU?
     Happiness: AU06 + AU12
     Sadness: AUO1 + AU04 + AU15
     Anger: AU04 + AU05 + AU07 + AU23
@@ -61,15 +61,29 @@ def interpretation_AU(au_file):
                 if ligne_split[1] == "0" or ligne_split[1] == "1":
                     dic_au[ligne_split[0]] = ligne_split[1]
 
-    # On regarde dans quel état est la personne
-    if dic_au["AU06"] == 1 and dic_au["AU12"] == 1:
+    print(dic_au)
+
+    # We're looking for the emotional state of the person
+    if dic_au["AU06"] == "1" and dic_au["AU12"] == "1":
         return "happy"
 
-    elif dic_au["AU04"] == 1 or (dic_au["AU05"] == 1 and dic_au["AU07"] == 1 and dic_au["AU23"] == 1):
+    elif dic_au["AU04"] == "1" or (dic_au["AU05"] == "1" and dic_au["AU07"] == "1" and dic_au["AU23"] == "1"):
         return "angry"
 
     else:
         return "neutral"
+
+def write_emotions(emotion, file):
+    """Write the emotion in the file.
+
+    Args
+    ----
+        string emotion: name of the emotion (ex: happy)
+        param file: path of the file where the emotion will be writen
+
+    """
+    with open(file, 'w') as file_streaming:
+        file_streaming.write(emotion)
 
 
 if __name__ == '__main__':
@@ -91,8 +105,9 @@ if __name__ == '__main__':
     # We call openface
     call_openface(prog_file, picture_location, output_informations)
 
-    # We extract emotions
-    emotions = interpretation_AU(
+    # We extract emotion
+    emotion = interpretation_AU(
         config["openface"]["output_extract_informations"]["output_file_relative_path"])
 
-    print(emotions)
+    # We write emotion in a file
+    write_emotions(emotion, config["emotion_file"])
