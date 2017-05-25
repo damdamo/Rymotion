@@ -67,8 +67,5 @@ Deux méthodes testées jusqu'à maintenant:
 -  Utilisation de matlab avec une librairie qui donne des résultats bien plus convaincants:  
 [Lien pour la librairie matlab](http://labrosa.ee.columbia.edu/projects/coversongs/)
 
-Nous avons une étape de pré-processing où nous transformons un fichier ".wav" en un fichier texte qui nous retourne pour chaque ligne un temps en seconde où nous avons un beat de la musique.
-
-Une fois que nous récupérons le fichier "beats.txt" un script python lance la musique et un bruit sur chaque beat des temps données dans "beats.txt". Nous vérifions ainsi l'efficacité du système.
-
-Les musiques étant trop lourdes elles ne sont pas disponible directement sous github pour l'instant. Le fichier "beats.txt" est plus donné à titre indicatif pour voir à quoi celui-ci ressemble.
+Nous avons une étape de pré-processing où nous transformons un fichier ".wav" en un fichier texte qui nous retourne pour chaque ligne un temps en seconde où nous avons un beat de la musique.  
+Pour plus de détails rendez-vous dans le dossier "matlab" qui gère toute cette partie avec un readme dédié.
