@@ -1,5 +1,9 @@
 #! /usr/bin/env python3
 
+"""The goal is just to play a sound for each beat that
+is given by a text file. Both (music and beats) are playing
+at the same time."""
+
 import time
 import pygame
 from pygame.locals import *
