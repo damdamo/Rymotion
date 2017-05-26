@@ -11,8 +11,10 @@ import json
 import pygame
 import pygame.camera
 
+import time
 import pandas as pd
 
+from timer_class import TimerClass
 
 def take_photos(folder_name, file_name):
     """Juste to take photos with webcam"""
@@ -28,6 +30,7 @@ def take_photos(folder_name, file_name):
     cam = pygame.camera.Camera(list_camera[0], (1280, 720))
     cam.start()
     img = cam.get_image()
+    cam.stop()
 
     output_name = "{}/{}".format(folder_name, file_name)
     pygame.image.save(img, output_name)
@@ -61,8 +64,6 @@ def interpretation_AU(au_file):
                 if ligne_split[1] == "0" or ligne_split[1] == "1":
                     dic_au[ligne_split[0]] = ligne_split[1]
 
-    print(dic_au)
-
     # We're looking for the emotional state of the person
     if dic_au["AU06"] == "1" and dic_au["AU12"] == "1":
         return "happy"
@@ -72,6 +73,7 @@ def interpretation_AU(au_file):
 
     else:
         return "neutral"
+
 
 def write_emotions(emotion, file):
     """Write the emotion in the file.
@@ -85,22 +87,16 @@ def write_emotions(emotion, file):
     with open(file, 'w') as file_streaming:
         file_streaming.write(emotion)
 
-
-if __name__ == '__main__':
-
-    config_file = sys.argv[1]
-
-    with open(config_file, 'r') as config_stream:
-        config = yaml.safe_load(config_stream)
-
+def main_excecution(config):
+    """Main excecution"""
     prog_file = config["openface"]["bin_file"]
-    picture_location = "{}/{}".format(config["pictures"]["folder_name"],
-                                      config["pictures"]["file_name"])
+    picture_location = "{}/{}".format(config["openface"]["pictures"]["folder_name"],
+                                      config["openface"]["pictures"]["file_name"])
     output_informations = config["openface"]["output_extract_informations"]["output_file_full_path"]
 
     # We take a photo
-    take_photos(config["pictures"]["folder_name"],
-                config["pictures"]["file_name"])
+    take_photos(config["openface"]["pictures"]["folder_name"],
+                config["openface"]["pictures"]["file_name"])
 
     # We call openface
     call_openface(prog_file, picture_location, output_informations)
@@ -111,3 +107,23 @@ if __name__ == '__main__':
 
     # We write emotion in a file
     write_emotions(emotion, config["emotion_file"])
+
+if __name__ == '__main__':
+
+    config_file = sys.argv[1]
+
+    with open(config_file, 'r') as config_stream:
+        config = yaml.safe_load(config_stream)
+
+
+    tmr = TimerClass(10, main_excecution, config)
+
+    tmr.start()
+
+    time.sleep(config["music"]["time"])
+
+    tmr.stop()
+
+    #main_excecution(config)
+
+    #while time < config['music']['time']:

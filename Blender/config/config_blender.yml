@@ -9,16 +9,16 @@
 openface:
   # Information about pictures
   pictures:
-    folder_name: "pictures"
+    folder_name: "openface/pictures"
     file_name: "my_picture.jpg"
   bin_file: "/home/damien/local/OpenFace/build/bin/FaceLandmarkImg"
 # Give the full path for the extract informations
 # Needed because we call the openface application with this argument
   output_extract_informations:
     output_file_full_path: "/home/damien/Workspace/IHM/Rymotion/Blender/openface/informations_extract/informations.txt"
-    output_file_relative_path: "informations_extract/informations_det_0.txt"
+    output_file_relative_path: "openface/informations_extract/informations_det_0.txt"
 
-emotion_file:  "informations_extract/emotion.txt"
+emotion_file:  "openface/informations_extract/emotion.txt"
 music:
   # En seconde
   time: 240
