@@ -2,42 +2,43 @@
 
 ## Projet IHM (Interactions Homme Machine)
 
-#### Bases git  
+### Usage (Only linux)
 
--  Cloner le projet
--  Ajouter un nouveau fichier au projet
--  Commit ses changements
--  Push ses changements sur github:
+Go to the folder Blender and open "blender"
+
+Before to start Blender (in the same folder), you have to
+start the python script (openface/openface.py) like this:
 
 ```bash
-# Télécharger le projet
-git clone https://github.com/damdamo/Rymotion.git
-# Ajouter un fichier au projet git
-git add nomDuFichier
-# Commit ses changements
-git commit nomDuFichier
-# Push ses changements
-git push
+# You can choose your config, but think about to adapt it
+# if necessarily
+python3 openface/openface.py config/config_blender.yml
 ```
 
-#### Raccourci Vim pour les commentaires du commit (avec git bash):
-```bash
-#Save
-:w
-#Quit
-:q
-#Save and Quit
-:wq
-#Mode insertion
-i
-#Quitter le mode insertion
-escape
-```
+You're running the script to record emotions. The blender game will
+read in the file "openface/informations_extract/emotion.txt" the value
+which is written by "openface/openface.py".
 
+Now you just have to start the game. You have to put your mouse on the window
+game and press "p".
 
-## Gestion du son
+### What do you need?
 
-#### Installation Pygame
+#### Openface
+
+I redirect you on this url to install Openface:  
+https://github.com/TadasBaltrusaitis/OpenFace/wiki  
+When you have finished the above step, think to modify
+the file config to give the full path of openface.
+
+#### Blender
+
+You can download it to:  
+https://www.blender.org/download/
+
+#### Pygame
+
+Installation Pygame: (needed to use the camera)
 
 ```bash
 # Dépendances permettant de compiler un module pour python3 + mercurial pour cloner le repo
@@ -58,7 +59,10 @@ sudo python3 setup.py install
 
 [Lien où trouver ce script](https://openclassrooms.com/forum/sujet/pygame-pour-python-3-3-sous-ubuntu-12-10)
 
-## Comment récupérer les beats d'une musique
+
+## More informations
+
+#### Comment récupérer les beats d'une musique
 
 Deux méthodes testées jusqu'à maintenant:  
 
