@@ -64,13 +64,10 @@ def interpretation_AU(au_file):
         return "happy"
 
     elif dic_au["AU04"] == "1" and dic_au["AU07"] == "1":
-        print("4+7")
         return "angry"
     elif dic_au["AU04"] == "1" and dic_au["AU05"] == "1":
-        print("4+5")
         return "angry"
     elif dic_au["AU04"] == "1" and dic_au["AU23"] == "1":
-        print("4+23")
         return "angry"
 
     else:
