@@ -4,17 +4,12 @@ them with openface to have action unit"""
 
 import os
 import sys
-
+import time
 import yaml
-import json
-
 import pygame
 import pygame.camera
-
-import time
-import pandas as pd
-
 from timer_class import TimerClass
+
 
 def take_photos(folder_name, file_name):
     """Juste to take photos with webcam"""
@@ -68,7 +63,14 @@ def interpretation_AU(au_file):
     if dic_au["AU06"] == "1" and dic_au["AU12"] == "1":
         return "happy"
 
-    elif dic_au["AU04"] == "1" or (dic_au["AU05"] == "1" and dic_au["AU07"] == "1" and dic_au["AU23"] == "1"):
+    elif dic_au["AU04"] == "1" and dic_au["AU07"] == "1":
+        print("4+7")
+        return "angry"
+    elif dic_au["AU04"] == "1" and dic_au["AU05"] == "1":
+        print("4+5")
+        return "angry"
+    elif dic_au["AU04"] == "1" and dic_au["AU23"] == "1":
+        print("4+23")
         return "angry"
 
     else:
@@ -86,6 +88,7 @@ def write_emotions(emotion, file):
     """
     with open(file, 'w') as file_streaming:
         file_streaming.write(emotion)
+
 
 def main_excecution(config):
     """Main excecution"""
@@ -107,6 +110,7 @@ def main_excecution(config):
 
     # We write emotion in a file
     write_emotions(emotion, config["emotion_file"])
+
 
 if __name__ == '__main__':
 
