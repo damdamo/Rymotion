@@ -21,4 +21,4 @@ openface:
 emotion_file:  "openface/informations_extract/emotion.txt"
 music:
   # En seconde
-  time: 240
+  time: 300
