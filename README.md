@@ -6,8 +6,9 @@
 
 Go to the folder Blender and open "blender"
 
-Before to start Blender (in the same folder), you have to
-start the python script (openface/openface.py) like this:
+Before to start Blender (in the folder Blender and not in the root), you have to
+start the python script (openface/openface.py) like this
+(You have to be in the folder Blender, even for the python script!)
 
 ```bash
 # You can choose your config, but think about to adapt it
