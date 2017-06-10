@@ -39,7 +39,7 @@ https://www.blender.org/download/
 
 #### Pygame
 
-Installation Pygame: (needed to use the camera)
+Pygame installation: (needed to use the camera)
 
 ```bash
 # Dépendances permettant de compiler un module pour python3 + mercurial pour cloner le repo
@@ -58,7 +58,7 @@ python3 setup.py build
 sudo python3 setup.py install
 ```
 
-[Lien où trouver ce script](https://openclassrooms.com/forum/sujet/pygame-pour-python-3-3-sous-ubuntu-12-10)
+[Where you can fin the script](https://openclassrooms.com/forum/sujet/pygame-pour-python-3-3-sous-ubuntu-12-10)
 
 
 ## More informations
